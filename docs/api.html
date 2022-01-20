@@ -34,8 +34,8 @@ h5 {padding:10px 0 0 0;font-size:15px;}
        driftly : {
 
          index首页请求 : ['json/get','com.driftly.xyz.index',{
-           device_code :['s','当前设备编码','Y'],
-           signature : ['s','当前用户签名','N']
+           device_code :['s','当前设备编码','N'],
+           signature : ['s','当前用户签名','Y']
          },{
            signature_info : ['o','当前用户签名信息对象,只有购买过签名才会返回',{},{
              signature : ['s','签名信息'],
@@ -50,12 +50,14 @@ h5 {padding:10px 0 0 0;font-size:15px;}
            }],
            file_history : ['a','在线的文件访问记录，只有购买过签名才会返回在线的,默认返回5条最近的',{},{
              name : ['s','文件名称'],
-             cid : ['s','文件访问cid'],
-             datetime : ['s','最后访问文件的时间'],
+             file_id : ['s','文件访问id'],
+             gmt_modified : ['s','最后访问文件的时间'],
            }],
            dynamics : ['o','用户动态信息数据',{},{
-             find_times : ['i','已find的次数'],
-             send_times : ['i','已send的次数'],
+             find_count : ['i','已find的次数'],
+             send_count : ['i','已send的次数'],
+             new_reply_count : ['i','新被回复数'],
+             new_like_count : ['i','新被点赞数']
            }],
            success : ['b','成功标识','Y'],
            errorCode : ['s','错误码','Y'],
@@ -66,12 +68,13 @@ h5 {padding:10px 0 0 0;font-size:15px;}
          history在线浏览记录查询 : ['json/get','com.driftly.xyz.history',{
           signature : ['s','当前用户签名，必传','Y'],
           keyword : ['s','查询历史记录文件名关键词，不传查全部','N'],
-          last_cid : ['s','最后一条文件的cid，不传默认从第0条重新加载','N']
+          last_history_id : ['s','最后一条文件历史的id，不传默认从第0条重新加载','N']
          },{
           file_history : ['a','在线的文件访问记录，列表接口返回20条',{},{
+             id : ['i','文件历史id'],
              name : ['s','文件名称'],
-             cid : ['s','文件访问cid'],
-             datetime : ['s','最后访问文件的时间'],
+             file_id : ['s','文件访问id'],
+             gmt_modified : ['s','最后访问文件的时间'],
           }],
           success : ['b','成功标识','Y'],
           errorCode : ['s','错误码','Y'],
@@ -81,10 +84,10 @@ h5 {padding:10px 0 0 0;font-size:15px;}
          find查找文件 : ['json/get','com.driftly.xyz.find',{
             device_code :['s','当前设备编码','Y'],
             signature : ['s','当前用户签名','N'],
-            cid : ['s','当前文件的cid']
+            file_id : ['s','当前文件的id']
          },{
             file_info : ['o','保存在driftly社区的文件基础信息，如果没有不返回',{},{
-                cid : ['s','文件cid','Y'],
+                file_id : ['s','文件id','Y'],
                 first_uploaded : ['s','首传的用户名','N'],
                 upload_time : ['s','上传时间','N'],
                 name : ['s','文件名称','N'],
@@ -121,7 +124,7 @@ h5 {padding:10px 0 0 0;font-size:15px;}
             body : ['s','发送文件的流数据']
          },{
             file_info : ['o','保存在driftly社区的文件基础信息，如果没有不返回',{},{
-                cid : ['s','文件cid','Y'],
+                file_id : ['s','文件id','Y'],
                 first_uploaded : ['s','首传的用户名','N'],
                 upload_time : ['s','上传时间','N'],
                 name : ['s','文件名称','N'],
