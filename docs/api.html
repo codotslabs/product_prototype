@@ -33,7 +33,7 @@ h5 {padding:10px 0 0 0;font-size:15px;}
 
        driftly : {
 
-         index首页请求 : ['json/get','com.driftly.xyz.index',{
+         index首页请求 : ['json/get','index',{
            device_code :['s','当前设备编码','N'],
            signature : ['s','当前用户签名','Y']
          },{
@@ -65,7 +65,7 @@ h5 {padding:10px 0 0 0;font-size:15px;}
 
          }],
 
-         history在线浏览记录查询 : ['json/get','com.driftly.xyz.history',{
+         history在线浏览记录查询 : ['json/get','file/history',{
           device_code : ['s','当前设备编码','N'],
           signature : ['s','当前用户签名，必传','Y'],
           keyword : ['s','查询历史记录文件名关键词，不传查全部','N'],
@@ -82,7 +82,7 @@ h5 {padding:10px 0 0 0;font-size:15px;}
           errorMsg : ['s','错误消息','Y']
          }],
 
-         find查找文件 : ['json/get','com.driftly.xyz.find',{
+         find查找文件 : ['json/get','file/find',{
             device_code :['s','当前设备编码'],
             signature : ['s','当前用户签名','Y'],
             file_id : ['s','当前文件的id']
@@ -120,7 +120,7 @@ h5 {padding:10px 0 0 0;font-size:15px;}
 
          }],
 
-         send发送文件 : ['json/get','com.driftly.xyz.send',{
+         send发送文件 : ['json/get','file/send',{
             device_code :['s','当前设备编码','N'],
             signature : ['s','当前用户签名','Y'],
             file_name : ['s','需要发送的文件名'],
@@ -159,7 +159,7 @@ h5 {padding:10px 0 0 0;font-size:15px;}
             }]
          }],
 
-         file_reply回复文件 : ['json/get','com.friftly.xyz.file.reply',{
+         file_reply回复文件 : ['json/get','file/reply',{
             device_code :['s','当前设备编码'],
             signature : ['s','当前用户签名'],
             file_id : ['s','当前文件id'],
@@ -195,7 +195,7 @@ h5 {padding:10px 0 0 0;font-size:15px;}
             }]
          }],
 
-         file_like点赞文件 : ['json/get','com.friftly.xyz.file.like',{
+         file_like点赞文件 : ['json/get','file/like',{
             device_code :['s','当前设备编码'],
             signature : ['s','当前用户签名'],
             file_id : ['s','当前文件id'],
@@ -214,7 +214,7 @@ h5 {padding:10px 0 0 0;font-size:15px;}
          }],
 
 
-         file_download下载文件 : ['json/get','com.friftly.xyz.file.download',{
+         file_download下载文件 : ['json/get','file/download',{
             device_code :['s','当前设备编码'],
             signature : ['s','当前用户签名'],
             file_id : ['s','当前文件id'],
@@ -232,7 +232,7 @@ h5 {padding:10px 0 0 0;font-size:15px;}
             }]
          }],
 
-         comment_reply回复一个文件的评论 : ['json/get','com.friftly.xyz.comment.reply',{
+         comment_reply回复一个文件的评论 : ['json/get','comment/reply',{
             device_code :['s','当前设备编码'],
             signature : ['s','当前用户签名'],
             comment_id : ['s','对应回复的id'],
@@ -257,7 +257,7 @@ h5 {padding:10px 0 0 0;font-size:15px;}
             }]
          }],
 
-         comment_like点赞一个文件的评论 : ['json/get','com.friftly.xyz.comment.like',{
+         comment_like点赞一个文件的评论 : ['json/get','comment/like',{
             device_code :['s','当前设备编码'],
             signature : ['s','当前用户签名'],
             comment_id : ['s','对应回复的id'],
@@ -281,13 +281,28 @@ h5 {padding:10px 0 0 0;font-size:15px;}
             }]
          }],
 
-         reply_like点赞一个文件的评论 : ['json/get','com.friftly.xyz.comment.reply.like',{
+         reply_like点赞一个文件的评论 : ['json/get','reply/like',{
             device_code :['s','当前设备编码'],
             signature : ['s','当前用户签名'],
             reply_id : ['s','对应回复的id'],
          },{
             
          }],
+
+         pay_prepare支付准备 : ['json/','pay/prepare',{},{
+           pay_selections : ['a','支付选择列表',{},{
+              cate_id : ['s','分类id'],
+              duration : ['i','购买的有效期，单位天'],
+              price : ['s','价格，单位美元']
+
+           }],
+           support_pay_channels : ['a','当前支持的支付渠道列表',{},{
+              channel_id : ['s','渠道id'],
+              name : ['s','渠道名称'],
+              icon : ['s','渠道图标'],
+              key : ['s','支付秘钥或其他关键信息']
+           }]
+         }]
 
 
          
