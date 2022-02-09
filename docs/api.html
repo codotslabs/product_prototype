@@ -49,7 +49,7 @@ h5 {padding:10px 0 0 0;font-size:15px;}
              send_limit : ['i','send的上限']
            }],
            file_history : ['a','在线的文件访问记录，只有购买过签名才会返回在线的,默认返回5条最近的',{},{
-             name : ['s','文件名称'],
+             file_name : ['s','文件名称'],
              file_id : ['s','文件访问id'],
              gmt_modified : ['s','最后访问文件的时间'],
            }],
@@ -66,13 +66,14 @@ h5 {padding:10px 0 0 0;font-size:15px;}
          }],
 
          history在线浏览记录查询 : ['json/get','com.driftly.xyz.history',{
+          device_code : ['s','当前设备编码','N'],
           signature : ['s','当前用户签名，必传','Y'],
           keyword : ['s','查询历史记录文件名关键词，不传查全部','N'],
           last_history_id : ['s','最后一条文件历史的id，不传默认从第0条重新加载','N']
          },{
           file_history : ['a','在线的文件访问记录，列表接口返回20条',{},{
              id : ['i','文件历史id'],
-             name : ['s','文件名称'],
+             file_name : ['s','文件名称'],
              file_id : ['s','文件访问id'],
              gmt_modified : ['s','最后访问文件的时间'],
           }],
@@ -82,32 +83,34 @@ h5 {padding:10px 0 0 0;font-size:15px;}
          }],
 
          find查找文件 : ['json/get','com.driftly.xyz.find',{
-            device_code :['s','当前设备编码','Y'],
-            signature : ['s','当前用户签名','N'],
+            device_code :['s','当前设备编码'],
+            signature : ['s','当前用户签名','Y'],
             file_id : ['s','当前文件的id']
          },{
             file_info : ['o','保存在driftly社区的文件基础信息，如果没有不返回',{},{
                 file_id : ['s','文件id','Y'],
-                first_uploaded : ['s','首传的用户名','N'],
-                upload_time : ['s','上传时间','N'],
-                name : ['s','文件名称','N'],
+                first_upload_user : ['s','首传的用户名','N'],
+                gmt_create : ['s','上传时间','N'],
+                file_name : ['s','文件名称','N'],
                 size : ['i','文件大小，单位kb'],
-                comment_cnt : ['i','文件评论数'],
-                find_cnt : ['i','文件被find次数'],
-                download_cnt : ['i','文件被download次数'],
-                like_cnt : ['i','文件被like次数'],
+                reply_count : ['i','文件评论数'],
+                find_count : ['i','文件被find次数'],
+                download_count : ['i','文件被download次数'],
+                like_count : ['i','文件被like次数'],
             }],
-            comments : ['a','文件评论区信息',{},{
+           comments : ['a','文件评论区信息',{},{
+              id : ['s','评论id'],
               avatar : ['s','发表评论的的用户头像地址','N'],
-              send_time : ['s','发送评论的时间'],
-              like_cnt : ['s','评论被点赞数'],
-              reply_cnt : ['s','评论被回复数'],
+              nickname : ['s','发表评论的用户昵称'],
+              gmt_create : ['s','发送评论的时间'],
+              like_count : ['s','评论被点赞数'],
+              reply_count : ['s','评论被回复数'],
               content_type : ['s','评论类型 : 文本、视频、图片'],
               content : ['s','评论内容'],
               replies : ['a','评论的回复，默认不返回',{},{
                 avatar : ['s','发表评论的的用户头像地址','N'],
-                send_time : ['s','发送评论的时间'],
-                like_cnt : ['s','评论被点赞数'],
+                gmt_create : ['s','发送评论的时间'],
+                like_count : ['s','评论被点赞数'],
                 content_type : ['s','评论类型 : 文本、视频、图片'],
                 content : ['s','评论内容'],
               }]
@@ -118,39 +121,174 @@ h5 {padding:10px 0 0 0;font-size:15px;}
          }],
 
          send发送文件 : ['json/get','com.driftly.xyz.send',{
-            device_code :['s','当前设备编码','Y'],
-            signature : ['s','当前用户签名','N'],
-            name : ['s','需要发送的文件名'],
-            body : ['s','发送文件的流数据']
+            device_code :['s','当前设备编码','N'],
+            signature : ['s','当前用户签名','Y'],
+            file_name : ['s','需要发送的文件名'],
+            size : ['i','当前的文件大小,单位kb'],
+            file_id : ['s','文件id']
          },{
-            file_info : ['o','保存在driftly社区的文件基础信息，如果没有不返回',{},{
+            file_info : ['o','保存在driftly社区的文件基础信息，如果文件是第一次在社区被访问,is_initial会返回1，否则0',{},{
                 file_id : ['s','文件id','Y'],
-                first_uploaded : ['s','首传的用户名','N'],
-                upload_time : ['s','上传时间','N'],
+                first_upload_user : ['s','首传的用户名','Y'],
+                gmt_create : ['s','上传时间','Y'],
                 name : ['s','文件名称','N'],
                 size : ['i','文件大小，单位kb'],
-                comment_cnt : ['i','文件评论数'],
-                find_cnt : ['i','文件被find次数'],
-                download_cnt : ['i','文件被download次数'],
-                like_cnt : ['i','文件被like次数'],
+                reply_count : ['i','文件评论数'],
+                find_count : ['i','文件被find次数'],
+                download_count : ['i','文件被download次数'],
+                like_count : ['i','文件被like次数'],
+                is_initial : ['b','文件是否第一次在社区被访问']
             }],
             comments : ['a','文件评论区信息',{},{
+              id : ['s','评论id'],
               avatar : ['s','发表评论的的用户头像地址','N'],
-              send_time : ['s','发送评论的时间'],
-              like_cnt : ['s','评论被点赞数'],
-              reply_cnt : ['s','评论被回复数'],
+              nickname : ['s','发表评论的用户昵称'],
+              gmt_create : ['s','发送评论的时间'],
+              like_count : ['s','评论被点赞数'],
+              reply_count : ['s','评论被回复数'],
               content_type : ['s','评论类型 : 文本、视频、图片'],
               content : ['s','评论内容'],
               replies : ['a','评论的回复，默认不返回',{},{
                 avatar : ['s','发表评论的的用户头像地址','N'],
-                send_time : ['s','发送评论的时间'],
-                like_cnt : ['s','评论被点赞数'],
+                gmt_create : ['s','发送评论的时间'],
+                like_count : ['s','评论被点赞数'],
                 content_type : ['s','评论类型 : 文本、视频、图片'],
                 content : ['s','评论内容'],
               }]
 
             }]
-         }]
+         }],
+
+         file_reply回复文件 : ['json/get','com.friftly.xyz.file.reply',{
+            device_code :['s','当前设备编码'],
+            signature : ['s','当前用户签名'],
+            file_id : ['s','当前文件id'],
+            content : ['s','回复的内容']
+         },{
+          file_info : ['o','保存在driftly社区的文件基础信息，如果文件是第一次在社区被访问,is_initial会返回1，否则0',{},{
+                file_id : ['s','文件id','Y'],
+                first_upload_user : ['s','首传的用户名','Y'],
+                upload_time : ['s','上传时间','Y'],
+                name : ['s','文件名称','N'],
+                size : ['i','文件大小，单位kb'],
+                reply_count : ['i','文件评论数'],
+                find_count : ['i','文件被find次数'],
+                download_count : ['i','文件被download次数'],
+                like_count : ['i','文件被like次数'],
+            }],
+            comments : ['a','文件评论区信息',{},{
+              id : ['s','评论id'],
+              avatar : ['s','发表评论的的用户头像地址','N'],
+              nickname : ['s','发表评论的用户昵称'],
+              gmt_create : ['s','发送评论的时间'],
+              like_count : ['s','评论被点赞数'],
+              reply_count : ['s','评论被回复数'],
+              content_type : ['s','评论类型 : 文本、视频、图片'],
+              content : ['s','评论内容'],
+              replies : ['a','评论的回复，默认不返回',{},{
+                avatar : ['s','发表评论的的用户头像地址','N'],
+                gmt_create : ['s','发送评论的时间'],
+                like_count : ['s','评论被点赞数'],
+                content_type : ['s','评论类型 : 文本、视频、图片'],
+                content : ['s','评论内容'],
+              }]
+            }]
+         }],
+
+         file_like点赞文件 : ['json/get','com.friftly.xyz.file.like',{
+            device_code :['s','当前设备编码'],
+            signature : ['s','当前用户签名'],
+            file_id : ['s','当前文件id'],
+         },{
+          file_info : ['o','保存在driftly社区的文件基础信息，如果文件是第一次在社区被访问,is_initial会返回1，否则0',{},{
+                file_id : ['s','文件id','Y'],
+                first_upload_user : ['s','首传的用户名','Y'],
+                gmt_create : ['s','上传时间','Y'],
+                name : ['s','文件名称','N'],
+                size : ['i','文件大小，单位kb'],
+                reply_count : ['i','文件评论数'],
+                find_count : ['i','文件被find次数'],
+                download_count : ['i','文件被download次数'],
+                like_count : ['i','文件被like次数'],
+            }]
+         }],
+
+
+         file_download下载文件 : ['json/get','com.friftly.xyz.file.download',{
+            device_code :['s','当前设备编码'],
+            signature : ['s','当前用户签名'],
+            file_id : ['s','当前文件id'],
+         },{
+          file_info : ['o','保存在driftly社区的文件基础信息，如果文件是第一次在社区被访问,is_initial会返回1，否则0',{},{
+                file_id : ['s','文件id','Y'],
+                first_upload_user : ['s','首传的用户名','Y'],
+                gmt_create : ['s','上传时间','Y'],
+                name : ['s','文件名称','N'],
+                size : ['i','文件大小，单位kb'],
+                reply_count : ['i','文件评论数'],
+                find_count : ['i','文件被find次数'],
+                download_count : ['i','文件被download次数'],
+                like_count : ['i','文件被like次数'],
+            }]
+         }],
+
+         comment_reply回复一个文件的评论 : ['json/get','com.friftly.xyz.comment.reply',{
+            device_code :['s','当前设备编码'],
+            signature : ['s','当前用户签名'],
+            comment_id : ['s','对应回复的id'],
+            content : ['s','回复的内容']
+         },{
+            comments : ['a','文件评论区信息',{},{
+              id : ['s','评论id'],
+              avatar : ['s','发表评论的的用户头像地址','N'],
+              nickname : ['s','发表评论的用户昵称'],
+              gmt_create : ['s','发送评论的时间'],
+              like_count : ['s','评论被点赞数'],
+              reply_count : ['s','评论被回复数'],
+              content_type : ['s','评论类型 : 文本、视频、图片'],
+              content : ['s','评论内容'],
+              replies : ['a','评论的回复，默认不返回',{},{
+                avatar : ['s','发表评论的的用户头像地址','N'],
+                gmt_create : ['s','发送评论的时间'],
+                like_count : ['s','评论被点赞数'],
+                content_type : ['s','评论类型 : 文本、视频、图片'],
+                content : ['s','评论内容'],
+              }]
+            }]
+         }],
+
+         comment_like点赞一个文件的评论 : ['json/get','com.friftly.xyz.comment.like',{
+            device_code :['s','当前设备编码'],
+            signature : ['s','当前用户签名'],
+            comment_id : ['s','对应回复的id'],
+         },{
+            comments : ['a','文件评论区信息',{},{
+              id : ['s','评论id'],
+              avatar : ['s','发表评论的的用户头像地址','N'],
+              nickname : ['s','发表评论的用户昵称'],
+              gmt_create : ['s','发送评论的时间'],
+              like_count : ['s','评论被点赞数'],
+              reply_count : ['s','评论被回复数'],
+              content_type : ['s','评论类型 : 文本、视频、图片'],
+              content : ['s','评论内容'],
+              replies : ['a','评论的回复，默认不返回',{},{
+                avatar : ['s','发表评论的的用户头像地址','N'],
+                gmt_create : ['s','发送评论的时间'],
+                like_count : ['s','评论被点赞数'],
+                content_type : ['s','评论类型 : 文本、视频、图片'],
+                content : ['s','评论内容'],
+              }]
+            }]
+         }],
+
+         reply_like点赞一个文件的评论 : ['json/get','com.friftly.xyz.comment.reply.like',{
+            device_code :['s','当前设备编码'],
+            signature : ['s','当前用户签名'],
+            reply_id : ['s','对应回复的id'],
+         },{
+            
+         }],
+
 
          
 
