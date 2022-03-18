@@ -422,7 +422,19 @@
                                 icon: ['s', '渠道图标'],
                                 key: ['s', '支付秘钥或其他关键信息']
                             }]
-                        }]
+                        }],
+
+                        change_avatar修改头像: ['json/post', 'profile/change_avatar', {
+                            device_code: ['s', '当前设备编码'],
+                            signature: ['s', '当前用户签名'],
+                            file: ['s', '此字段传入文件流']
+                        }, {}],
+
+                        change_nick_name修改昵称: ['json/post', 'profile/change_nick_name', {
+                            device_code: ['s', '当前设备编码'],
+                            signature: ['s', '当前用户签名'],
+                            nick_name: ['s', '需要修改的昵称，长度不要超过10']
+                        }, {}]
 
 
                     }
