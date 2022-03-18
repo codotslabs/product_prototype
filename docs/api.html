@@ -428,13 +428,25 @@
                             device_code: ['s', '当前设备编码'],
                             signature: ['s', '当前用户签名'],
                             file: ['s', '此字段传入文件流']
-                        }, {}],
+                        }, {
+                            id : ['s','用户id'],
+                            device_code : ['s','用户设备号'],
+                            signature : ['s','用户签名'],
+                            avatar : ['s','用户头像'],
+                            nick_name : ['s','用户昵称']
+                        }],
 
                         change_nick_name修改昵称: ['json/post', 'profile/change_nick_name', {
                             device_code: ['s', '当前设备编码'],
                             signature: ['s', '当前用户签名'],
                             nick_name: ['s', '需要修改的昵称，长度不要超过10']
-                        }, {}]
+                        }, {
+                            id : ['s','用户id'],
+                            device_code : ['s','用户设备号'],
+                            signature : ['s','用户签名'],
+                            avatar : ['s','用户头像'],
+                            nick_name : ['s','用户昵称']
+                        }]
 
 
                     }
