@@ -429,11 +429,11 @@
                             signature: ['s', '当前用户签名'],
                             file: ['s', '此字段传入文件流']
                         }, {
-                            id : ['s','用户id'],
-                            device_code : ['s','用户设备号'],
-                            signature : ['s','用户签名'],
-                            avatar : ['s','用户头像'],
-                            nick_name : ['s','用户昵称']
+                            id: ['s', '用户id'],
+                            device_code: ['s', '用户设备号'],
+                            signature: ['s', '用户签名'],
+                            avatar: ['s', '用户头像'],
+                            nick_name: ['s', '用户昵称']
                         }],
 
                         change_nick_name修改昵称: ['json/post', 'profile/change_nick_name', {
@@ -441,12 +441,33 @@
                             signature: ['s', '当前用户签名'],
                             nick_name: ['s', '需要修改的昵称，长度不要超过10']
                         }, {
-                            id : ['s','用户id'],
-                            device_code : ['s','用户设备号'],
-                            signature : ['s','用户签名'],
-                            avatar : ['s','用户头像'],
-                            nick_name : ['s','用户昵称']
-                        }]
+                            id: ['s', '用户id'],
+                            device_code: ['s', '用户设备号'],
+                            signature: ['s', '用户签名'],
+                            avatar: ['s', '用户头像'],
+                            nick_name: ['s', '用户昵称']
+                        }],
+
+                        load_more_comments加载更多文件评论: ['json/post', 'comment/load_more', {
+                            file_id: ['s', '当前文件id'],
+                            last_comment_id: ['s', '上次返回评论列表最后一条的id'],
+                        }, {
+                            id: ['s', '评论id'],
+                            avatar: ['s', '发表评论的的用户头像地址', 'N'],
+                            nickname: ['s', '发表评论的用户昵称'],
+                            gmt_create: ['s', '发送评论的时间'],
+                            like_count: ['s', '评论被点赞数'],
+                            reply_count: ['s', '评论被回复数'],
+                            content_type: ['s', '评论类型 : 文本、视频、图片'],
+                            content: ['s', '评论内容'],
+                            replies: ['a', '评论的回复，默认不返回', {}, {
+                                avatar: ['s', '发表评论的的用户头像地址', 'N'],
+                                gmt_create: ['s', '发送评论的时间'],
+                                like_count: ['s', '评论被点赞数'],
+                                content_type: ['s', '评论类型 : 文本、视频、图片'],
+                                content: ['s', '评论内容'],
+                            }]
+                        }],
 
 
                     }
