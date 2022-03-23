@@ -298,23 +298,6 @@
                                 download_count: ['i', '文件被download次数'],
                                 like_count: ['i', '文件被like次数'],
                             }],
-                            comments: ['a', '文件评论区信息', {}, {
-                                id: ['s', '评论id'],
-                                avatar: ['s', '发表评论的的用户头像地址', 'N'],
-                                nickname: ['s', '发表评论的用户昵称'],
-                                gmt_create: ['s', '发送评论的时间'],
-                                like_count: ['s', '评论被点赞数'],
-                                reply_count: ['s', '评论被回复数'],
-                                content_type: ['s', '评论类型 : 文本、视频、图片'],
-                                content: ['s', '评论内容'],
-                                replies: ['a', '评论的回复，默认不返回', {}, {
-                                    avatar: ['s', '发表评论的的用户头像地址', 'N'],
-                                    gmt_create: ['s', '发送评论的时间'],
-                                    like_count: ['s', '评论被点赞数'],
-                                    content_type: ['s', '评论类型 : 文本、视频、图片'],
-                                    content: ['s', '评论内容'],
-                                }]
-                            }]
                         }],
 
                         file_like点赞文件: ['json/get', 'file/like', {
@@ -360,23 +343,7 @@
                             comment_id: ['s', '对应回复的id'],
                             content: ['s', '回复的内容']
                         }, {
-                            comments: ['a', '文件评论区信息', {}, {
-                                id: ['s', '评论id'],
-                                avatar: ['s', '发表评论的的用户头像地址', 'N'],
-                                nickname: ['s', '发表评论的用户昵称'],
-                                gmt_create: ['s', '发送评论的时间'],
-                                like_count: ['s', '评论被点赞数'],
-                                reply_count: ['s', '评论被回复数'],
-                                content_type: ['s', '评论类型 : 文本、视频、图片'],
-                                content: ['s', '评论内容'],
-                                replies: ['a', '评论的回复，默认不返回', {}, {
-                                    avatar: ['s', '发表评论的的用户头像地址', 'N'],
-                                    gmt_create: ['s', '发送评论的时间'],
-                                    like_count: ['s', '评论被点赞数'],
-                                    content_type: ['s', '评论类型 : 文本、视频、图片'],
-                                    content: ['s', '评论内容'],
-                                }]
-                            }]
+
                         }],
 
                         comment_like点赞一个文件的评论: ['json/get', 'comment/like', {
@@ -384,23 +351,7 @@
                             signature: ['s', '当前用户签名'],
                             comment_id: ['s', '对应回复的id'],
                         }, {
-                            comments: ['a', '文件评论区信息', {}, {
-                                id: ['s', '评论id'],
-                                avatar: ['s', '发表评论的的用户头像地址', 'N'],
-                                nickname: ['s', '发表评论的用户昵称'],
-                                gmt_create: ['s', '发送评论的时间'],
-                                like_count: ['s', '评论被点赞数'],
-                                reply_count: ['s', '评论被回复数'],
-                                content_type: ['s', '评论类型 : 文本、视频、图片'],
-                                content: ['s', '评论内容'],
-                                replies: ['a', '评论的回复，默认不返回', {}, {
-                                    avatar: ['s', '发表评论的的用户头像地址', 'N'],
-                                    gmt_create: ['s', '发送评论的时间'],
-                                    like_count: ['s', '评论被点赞数'],
-                                    content_type: ['s', '评论类型 : 文本、视频、图片'],
-                                    content: ['s', '评论内容'],
-                                }]
-                            }]
+
                         }],
 
                         reply_like点赞一个文件的评论: ['json/get', 'reply/like', {
