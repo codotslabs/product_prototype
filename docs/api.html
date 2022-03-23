@@ -342,17 +342,13 @@
                             signature: ['s', '当前用户签名'],
                             comment_id: ['s', '对应回复的id'],
                             content: ['s', '回复的内容']
-                        }, {
-
-                        }],
+                        }, {}],
 
                         comment_like点赞一个文件的评论: ['json/get', 'comment/like', {
                             device_code: ['s', '当前设备编码'],
                             signature: ['s', '当前用户签名'],
                             comment_id: ['s', '对应回复的id'],
-                        }, {
-
-                        }],
+                        }, {}],
 
                         reply_like点赞一个文件的评论: ['json/get', 'reply/like', {
                             device_code: ['s', '当前设备编码'],
@@ -411,6 +407,19 @@
                             reply_count: ['s', '评论被回复数'],
                             content_type: ['s', '评论类型 : 文本、视频、图片'],
                             content: ['s', '评论内容'],
+                            replies: ['a', '评论的回复，默认不返回', {}, {
+                                avatar: ['s', '发表评论的的用户头像地址', 'N'],
+                                gmt_create: ['s', '发送评论的时间'],
+                                like_count: ['s', '评论被点赞数'],
+                                content_type: ['s', '评论类型 : 文本、视频、图片'],
+                                content: ['s', '评论内容'],
+                            }]
+                        }],
+
+                        load_more_replies加载更多文件评论: ['json/post', 'reply/load_more', {
+                            commnet_id: ['s', '当前评论id'],
+                            last_comment_id: ['s', '上次返回评论列表最后一条的id'],
+                        }, {
                             replies: ['a', '评论的回复，默认不返回', {}, {
                                 avatar: ['s', '发表评论的的用户头像地址', 'N'],
                                 gmt_create: ['s', '发送评论的时间'],
