@@ -417,8 +417,8 @@
                         }],
 
                         load_more_replies加载更多文件评论: ['json/post', 'reply/load_more', {
-                            commnet_id: ['s', '当前评论id'],
-                            last_comment_id: ['s', '上次返回评论列表最后一条的id'],
+                            comment_id: ['s', '当前评论id'],
+                            last_reply_id: ['s', '上次返回回复列表最后一条的id'],
                         }, {
                             replies: ['a', '评论的回复，默认不返回', {}, {
                                 avatar: ['s', '发表评论的的用户头像地址', 'N'],
