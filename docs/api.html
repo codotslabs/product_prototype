@@ -297,6 +297,7 @@
                             content: ['s', '评论内容'],
                             replies: ['a', '评论的回复，默认不返回', {}, {
                                 avatar: ['s', '发表评论的的用户头像地址', 'N'],
+                                nickname: ['s', '发表评论的用户昵称'],
                                 gmt_create: ['s', '发送评论的时间'],
                                 like_count: ['s', '评论被点赞数'],
                                 content_type: ['s', '评论类型 : 文本、视频、图片'],
@@ -349,6 +350,7 @@
                         }, {
                             id: ['s', 'id', 'N'],
                             avatar: ['s', '发表评论的的用户头像地址', 'N'],
+                            nickname: ['s', '发表评论的用户昵称'],
                             gmt_create: ['s', '发送评论的时间'],
                             like_count: ['s', '评论被点赞数'],
                             content_type: ['s', '评论类型 : 文本、视频、图片'],
@@ -410,28 +412,32 @@
                             file_id: ['s', '当前文件id'],
                             last_comment_id: ['s', '上次返回评论列表最后一条的id'],
                         }, {
-                            id: ['s', '评论id'],
-                            avatar: ['s', '发表评论的的用户头像地址', 'N'],
-                            nickname: ['s', '发表评论的用户昵称'],
-                            gmt_create: ['s', '发送评论的时间'],
-                            like_count: ['s', '评论被点赞数'],
-                            reply_count: ['s', '评论被回复数'],
-                            content_type: ['s', '评论类型 : 文本、视频、图片'],
-                            content: ['s', '评论内容'],
-                            replies: ['a', '评论的回复，默认不返回', {}, {
+                            data: ['a', '返回的数组', {}, {
+                                id: ['s', '评论id'],
                                 avatar: ['s', '发表评论的的用户头像地址', 'N'],
+                                nickname: ['s', '发表评论的用户昵称'],
                                 gmt_create: ['s', '发送评论的时间'],
                                 like_count: ['s', '评论被点赞数'],
+                                reply_count: ['s', '评论被回复数'],
                                 content_type: ['s', '评论类型 : 文本、视频、图片'],
                                 content: ['s', '评论内容'],
+                                replies: ['a', '评论的回复，默认不返回', {}, {
+                                    avatar: ['s', '发表评论的的用户头像地址', 'N'],
+                                    gmt_create: ['s', '发送评论的时间'],
+                                    like_count: ['s', '评论被点赞数'],
+                                    content_type: ['s', '评论类型 : 文本、视频、图片'],
+                                    content: ['s', '评论内容'],
+                                }]
                             }]
+
                         }],
 
                         load_more_replies加载更多文件评论: ['json/post', 'reply/load_more', {
                             comment_id: ['s', '当前评论id'],
                             last_reply_id: ['s', '上次返回回复列表最后一条的id'],
                         }, {
-                            replies: ['a', '评论的回复，默认不返回', {}, {
+                            data: ['a', '返回的数组', {}, {
+                                id: ['s', '回复id'],
                                 avatar: ['s', '发表评论的的用户头像地址', 'N'],
                                 gmt_create: ['s', '发送评论的时间'],
                                 like_count: ['s', '评论被点赞数'],
