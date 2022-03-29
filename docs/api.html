@@ -219,6 +219,7 @@
                                 find_count: ['i', '文件被find次数'],
                                 download_count: ['i', '文件被download次数'],
                                 like_count: ['i', '文件被like次数'],
+                                share_link: ['s', '分享链接']
                             }],
                             comments: ['a', '文件评论区信息', {}, {
                                 id: ['s', '评论id'],
@@ -445,6 +446,40 @@
                                 content: ['s', '评论内容'],
                             }]
                         }],
+
+                        preview文件预览WEB: ['json/post', 'file/preview', {
+                            file_id : ['s','当前文件id']
+                        }, {
+                            file_info: ['o', '保存在driftly社区的文件基础信息，如果没有不返回', {}, {
+                                file_id: ['s', '文件id', 'Y'],
+                                first_upload_user: ['s', '首传的用户名', 'N'],
+                                gmt_create: ['s', '上传时间', 'N'],
+                                file_name: ['s', '文件名称', 'N'],
+                                size: ['i', '文件大小，单位kb'],
+                                reply_count: ['i', '文件评论数'],
+                                find_count: ['i', '文件被find次数'],
+                                download_count: ['i', '文件被download次数'],
+                                like_count: ['i', '文件被like次数'],
+                                share_link: ['s', '分享链接']
+                            }],
+                            comments: ['a', '文件评论区信息', {}, {
+                                id: ['s', '评论id'],
+                                avatar: ['s', '发表评论的的用户头像地址', 'N'],
+                                nickname: ['s', '发表评论的用户昵称'],
+                                gmt_create: ['s', '发送评论的时间'],
+                                like_count: ['s', '评论被点赞数'],
+                                reply_count: ['s', '评论被回复数'],
+                                content_type: ['s', '评论类型 : 文本、视频、图片'],
+                                content: ['s', '评论内容'],
+                                replies: ['a', '评论的回复，默认不返回', {}, {
+                                    avatar: ['s', '发表评论的的用户头像地址', 'N'],
+                                    gmt_create: ['s', '发送评论的时间'],
+                                    like_count: ['s', '评论被点赞数'],
+                                    content_type: ['s', '评论类型 : 文本、视频、图片'],
+                                    content: ['s', '评论内容'],
+                                }]
+                            }]
+                        }]
 
 
                     }
