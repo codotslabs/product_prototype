@@ -159,6 +159,7 @@
                             signature: ['s', '当前用户签名', 'Y']
                         }, {
                             signature_info: ['o', '当前用户签名信息对象,只有购买过签名才会返回', {}, {
+                                uid: ['s', '当前用户id'],
                                 signature: ['s', '签名信息'],
                                 avatar: ['s', '用户头像访问地址'],
                                 nickname: ['s', '用户昵称'],
@@ -212,6 +213,7 @@
                             file_info: ['o', '保存在driftly社区的文件基础信息，如果没有不返回', {}, {
                                 file_id: ['s', '文件id', 'Y'],
                                 first_upload_user: ['s', '首传的用户名', 'N'],
+                                first_upload_uid: ['s', '首传用户id'],
                                 gmt_create: ['s', '上传时间', 'N'],
                                 file_name: ['s', '文件名称', 'N'],
                                 description: ['s', '文件描述', 'Y'],
@@ -487,9 +489,7 @@
                             file_id: ['s', '文件id'],
                             file_name: ['s', '修改后的文件名称,必须传入文件名，不改名就传原始文件名', 'N'],
                             description: ['s', '修改后的文件描述，可传，传空等于置空描述', 'Y']
-                        },{
-
-                        }]
+                        }, {}]
 
 
                     }
