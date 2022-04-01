@@ -489,7 +489,13 @@
                             file_id: ['s', '文件id'],
                             file_name: ['s', '修改后的文件名称,必须传入文件名，不改名就传原始文件名', 'N'],
                             description: ['s', '修改后的文件描述，可传，传空等于置空描述', 'Y']
-                        }, {}]
+                        }, {}],
+
+                        is_exist查询文件是否存在: ['json/post','file/is_exist',{
+                            file_id : ['s','文件id']
+                        },{
+                            exist : ['b','true表示存在，false表示不存在']
+                        }]
 
 
                     }
