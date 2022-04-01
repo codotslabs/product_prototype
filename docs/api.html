@@ -214,6 +214,7 @@
                                 first_upload_user: ['s', '首传的用户名', 'N'],
                                 gmt_create: ['s', '上传时间', 'N'],
                                 file_name: ['s', '文件名称', 'N'],
+                                description: ['s', '文件描述', 'Y'],
                                 size: ['i', '文件大小，单位kb'],
                                 reply_count: ['i', '文件评论数'],
                                 find_count: ['i', '文件被find次数'],
@@ -448,13 +449,14 @@
                         }],
 
                         preview文件预览WEB: ['json/post', 'file/preview', {
-                            file_id : ['s','当前文件id']
+                            file_id: ['s', '当前文件id']
                         }, {
                             file_info: ['o', '保存在driftly社区的文件基础信息，如果没有不返回', {}, {
                                 file_id: ['s', '文件id', 'Y'],
                                 first_upload_user: ['s', '首传的用户名', 'N'],
                                 gmt_create: ['s', '上传时间', 'N'],
                                 file_name: ['s', '文件名称', 'N'],
+                                description: ['s', '文件描述', 'Y'],
                                 size: ['i', '文件大小，单位kb'],
                                 reply_count: ['i', '文件评论数'],
                                 find_count: ['i', '文件被find次数'],
@@ -478,7 +480,15 @@
                                     content_type: ['s', '评论类型 : 文本、视频、图片'],
                                     content: ['s', '评论内容'],
                                 }]
-                            }]
+                            }],
+                        }],
+
+                        complete完善文件信息: ['json/post', 'file/complete', {
+                            file_id: ['s', '文件id'],
+                            file_name: ['s', '修改后的文件名称,必须传入文件名，不改名就传原始文件名', 'N'],
+                            description: ['s', '修改后的文件描述，可传，传空等于置空描述', 'Y']
+                        },{
+
                         }]
 
 
