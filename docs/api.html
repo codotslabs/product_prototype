@@ -222,7 +222,8 @@
                                 find_count: ['i', '文件被find次数'],
                                 download_count: ['i', '文件被download次数'],
                                 like_count: ['i', '文件被like次数'],
-                                share_link: ['s', '分享链接']
+                                share_link: ['s', '分享链接'],
+                                is_favor: ['s', '用户是否已添加到收藏夹']
                             }],
                             comments: ['a', '文件评论区信息', {}, {
                                 id: ['s', '评论id'],
@@ -491,11 +492,34 @@
                             description: ['s', '修改后的文件描述，可传，传空等于置空描述', 'Y']
                         }, {}],
 
-                        is_exist查询文件是否存在: ['json/post','file/is_exist',{
-                            file_id : ['s','文件id']
+                        is_exist查询文件是否存在: ['json/post', 'file/is_exist', {
+                            file_id: ['s', '文件id']
+                        }, {
+                            exist: ['b', 'true表示存在，false表示不存在']
+                        }],
+
+                        favors收藏夹列表: ['json/post', 'file/favors', {
+                            uid: ['s', '当前用户id,从index接口获取'],
+                            last_file_id: ['s', '加载的最后一条id，不传从最后一条开始', 'Y']
+                        }, {
+                            file_history: ['a', '在线的文件访问记录，只有购买过签名才会返回在线的,默认返回5条最近的', {}, {
+                                file_name: ['s', '文件名称'],
+                                file_id: ['s', '文件访问id'],
+                                gmt_modified: ['s', '最后访问文件的时间'],
+                            }],
+                        }],
+
+                        add_to_favor添加至收藏夹: ['json/post','file/add_to_favor',{
+                            uid: ['s','当前用户id,从index接口获取'],
+                            file_id : ['s','需要收藏的文件id']
                         },{
-                            exist : ['b','true表示存在，false表示不存在']
-                        }]
+
+                        }],
+
+                        delete_favor:['json/post','file/delete_favor',{
+                            uid: ['s','当前用户id,从index接口获取'],
+                            file_id : ['s','需要收藏的文件id']
+                        },{}]
 
 
                     }
