@@ -503,24 +503,31 @@
                             last_id: ['s', '加载的最后一条id，不传从最后一条开始', 'Y']
                         }, {
                             file_infos: ['a', '在线的文件访问记录，只有购买过签名才会返回在线的,默认返回5条最近的', {}, {
-                                id : ['s','数据id'],
+                                id: ['s', '数据id'],
+                                uid: ['s', '当前用户id'],
                                 file_name: ['s', '文件名称'],
                                 file_id: ['s', '文件访问id'],
+                                gmt_create: ['s', '收藏的创建时间'],
                                 gmt_modified: ['s', '最后访问文件的时间'],
                             }],
                         }],
 
-                        add_to_favorite添加至收藏夹: ['json/post','file/add_to_favorite',{
-                            uid: ['s','当前用户id,从index接口获取'],
-                            file_id : ['s','需要收藏的文件id']
-                        },{
-
+                        add_to_favorite添加至收藏夹: ['json/post', 'file/add_to_favorite', {
+                            uid: ['s', '当前用户id,从index接口获取'],
+                            file_id: ['s', '需要收藏的文件id']
+                        }, {
+                            id: ['s', '数据id'],
+                            uid: ['s', '当前用户id'],
+                            file_name: ['s', '文件名称'],
+                            file_id: ['s', '文件访问id'],
+                            gmt_create: ['s', '收藏的创建时间'],
+                            gmt_modified: ['s', '最后访问文件的时间'],
                         }],
 
-                        remove_from_favorite从收藏夹删除:['json/post','file/remove_from_favorite',{
-                            uid: ['s','当前用户id,从index接口获取'],
-                            file_id : ['s','需要收藏的文件id']
-                        },{}]
+                        remove_from_favorite从收藏夹删除: ['json/post', 'file/remove_from_favorite', {
+                            uid: ['s', '当前用户id,从index接口获取'],
+                            file_id: ['s', '需要收藏的文件id']
+                        }, {}]
 
 
                     }
