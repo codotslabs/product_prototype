@@ -500,9 +500,10 @@
 
                         favorite收藏夹列表: ['json/post', 'file/favorite', {
                             uid: ['s', '当前用户id,从index接口获取'],
-                            last_file_id: ['s', '加载的最后一条id，不传从最后一条开始', 'Y']
+                            last_id: ['s', '加载的最后一条id，不传从最后一条开始', 'Y']
                         }, {
                             file_infos: ['a', '在线的文件访问记录，只有购买过签名才会返回在线的,默认返回5条最近的', {}, {
+                                id : ['s','数据id'],
                                 file_name: ['s', '文件名称'],
                                 file_id: ['s', '文件访问id'],
                                 gmt_modified: ['s', '最后访问文件的时间'],
