@@ -175,6 +175,11 @@
                                 file_id: ['s', '文件访问id'],
                                 gmt_modified: ['s', '最后访问文件的时间'],
                             }],
+                            hots: ['a', '热门数据(首页推荐)', {}, {
+                                file_name: ['s', '文件名称'],
+                                file_id: ['s', '文件访问id'],
+                                gmt_modified: ['s', '最后访问文件的时间'],
+                            }],
                             dynamics: ['o', '用户动态信息数据', {}, {
                                 find_count: ['i', '已find的次数'],
                                 send_count: ['i', '已send的次数'],
@@ -223,7 +228,7 @@
                                 download_count: ['i', '文件被download次数'],
                                 like_count: ['i', '文件被like次数'],
                                 share_link: ['s', '分享链接'],
-                                is_favor: ['s', '用户是否已添加到收藏夹']
+                                is_favorite: ['s', '用户是否已添加到收藏夹']
                             }],
                             comments: ['a', '文件评论区信息', {}, {
                                 id: ['s', '评论id'],
@@ -535,7 +540,8 @@
                 } // apiDef
 
             }; //driftly
-        })();
+        })
+        ();
 
     </script>
 </head>
