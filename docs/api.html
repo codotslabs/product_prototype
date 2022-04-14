@@ -155,6 +155,7 @@
                     driftly: {
 
                         index首页请求: ['json/get', 'index', {
+                            uid: ['s', '当前用户id', 'Y'],
                             device_code: ['s', '当前设备编码', 'N'],
                             signature: ['s', '当前用户签名', 'Y']
                         }, {
@@ -163,7 +164,9 @@
                                 signature: ['s', '签名信息'],
                                 avatar: ['s', '用户头像访问地址'],
                                 nickname: ['s', '用户昵称'],
-                                expire_date: ['s', '签名过期时间']
+                                expire_date: ['s', '签名过期时间'],
+                                init_account: ['b', '用户是否已初始化账号'],
+                                account: ['s', '当前用户登录账号']
                             }],
                             configs: ['o', '客户端相关配置对象', {}, {
                                 about_link: ['s', '关于的链接地址'],
@@ -193,6 +196,7 @@
                         }],
 
                         history在线浏览记录查询: ['json/get', 'file/history', {
+                            uid: ['s', '当前用户id', 'Y'],
                             device_code: ['s', '当前设备编码', 'N'],
                             signature: ['s', '当前用户签名，必传', 'Y'],
                             keyword: ['s', '查询历史记录文件名关键词，不传查全部', 'N'],
@@ -210,6 +214,7 @@
                         }],
 
                         find查找文件: ['json/get', 'file/find', {
+                            uid: ['s', '当前用户id', 'Y'],
                             device_code: ['s', '当前设备编码'],
                             signature: ['s', '当前用户签名', 'Y'],
                             file_id: ['s', '当前文件的id'],
@@ -253,6 +258,7 @@
                         }],
 
                         send发送文件: ['json/get', 'file/send', {
+                            uid: ['s', '当前用户id', 'Y'],
                             device_code: ['s', '当前设备编码', 'N'],
                             signature: ['s', '当前用户签名', 'Y'],
                             file_name: ['s', '需要发送的文件名'],
@@ -292,6 +298,7 @@
                         }],
 
                         file_reply回复文件: ['json/get', 'file/reply', {
+                            uid: ['s', '当前用户id', 'Y'],
                             device_code: ['s', '当前设备编码'],
                             signature: ['s', '当前用户签名'],
                             file_id: ['s', '当前文件id'],
@@ -316,6 +323,7 @@
                         }],
 
                         file_like点赞文件: ['json/get', 'file/like', {
+                            uid: ['s', '当前用户id', 'Y'],
                             device_code: ['s', '当前设备编码'],
                             signature: ['s', '当前用户签名'],
                             file_id: ['s', '当前文件id'],
@@ -335,6 +343,7 @@
 
 
                         file_download下载文件: ['json/get', 'file/download', {
+                            uid: ['s', '当前用户id', 'Y'],
                             device_code: ['s', '当前设备编码'],
                             signature: ['s', '当前用户签名'],
                             file_id: ['s', '当前文件id'],
@@ -353,6 +362,7 @@
                         }],
 
                         comment_reply回复一个文件的评论: ['json/get', 'comment/reply', {
+                            uid: ['s', '当前用户id', 'Y'],
                             device_code: ['s', '当前设备编码'],
                             signature: ['s', '当前用户签名'],
                             comment_id: ['s', '对应回复的id'],
@@ -368,12 +378,14 @@
                         }],
 
                         comment_like点赞一个文件的评论: ['json/get', 'comment/like', {
+                            uid: ['s', '当前用户id', 'Y'],
                             device_code: ['s', '当前设备编码'],
                             signature: ['s', '当前用户签名'],
                             comment_id: ['s', '对应回复的id'],
                         }, {}],
 
                         reply_like点赞一个文件的评论: ['json/get', 'reply/like', {
+                            uid: ['s', '当前用户id', 'Y'],
                             device_code: ['s', '当前设备编码'],
                             signature: ['s', '当前用户签名'],
                             reply_id: ['s', '对应回复的id'],
@@ -395,6 +407,7 @@
                         }],
 
                         change_avatar修改头像: ['json/post', 'profile/change_avatar', {
+                            uid: ['s', '当前用户id', 'Y'],
                             device_code: ['s', '当前设备编码'],
                             signature: ['s', '当前用户签名'],
                             file: ['s', '此字段传入文件流']
@@ -407,6 +420,7 @@
                         }],
 
                         change_nick_name修改昵称: ['json/post', 'profile/change_nick_name', {
+                            uid: ['s', '当前用户id', 'Y'],
                             device_code: ['s', '当前设备编码'],
                             signature: ['s', '当前用户签名'],
                             nick_name: ['s', '需要修改的昵称，长度不要超过10']
@@ -532,7 +546,30 @@
                         remove_from_favorite从收藏夹删除: ['json/post', 'file/remove_from_favorite', {
                             uid: ['s', '当前用户id,从index接口获取'],
                             file_id: ['s', '需要收藏的文件id']
-                        }, {}]
+                        }, {}],
+
+                        setup_account初始化账号: ['json/post', 'profile/setup_account', {
+                            uid: ['s', '当前用户id'],
+                            account: ['s', '当前用户账号'],
+                            password: ['s', '当前用户密码,需要进行MD5加密']
+                        }, {}],
+                        reset_password重置密码: ['json/post', 'profile/reset_password', {
+                            uid: ['s', '当前用户id'],
+                            origin_password: ['s', '当前用户原密码，需要MD5'],
+                            new_password: ['s', '当前用户新密码，需要MD5']
+                        }, {}],
+                        sign_in账密登录: ['json/post', 'profile/sign_in', {
+                            account: ['s', '需要登录的账号'],
+                            password: ['s', '当前用户密码,需要MD5']
+                        }, {
+                            uid: ['s', '当前用户id'],
+                            signature: ['s', '签名信息'],
+                            avatar: ['s', '用户头像访问地址'],
+                            nickname: ['s', '用户昵称'],
+                            expire_date: ['s', '签名过期时间'],
+                            init_account: ['b', '用户是否已初始化账号'],
+                            account: ['s', '当前用户登录账号']
+                        }]
 
 
                     }
